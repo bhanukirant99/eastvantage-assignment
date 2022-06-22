@@ -10,7 +10,7 @@ const Details = () => {
   
   useEffect(() => {
     getUserFromAPI();
-    getUserFromLocalStorage()
+    setTimeout(getUserFromLocalStorage(), 500);
   });
 
   // Get user from ramdomuser.com
