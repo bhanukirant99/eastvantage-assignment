@@ -5,25 +5,24 @@ import "./Details.css";
 
 
 const Details = () => {
-  const [user, setUser] = useState({});
   const [userName, setUserName] = useState();
   const [userEmail, setUserEmail] = useState();
   
-
   useEffect(() => {
     getUserFromAPI();
     getUserFromLocalStorage()
   });
 
+  // Get user from ramdomuser.com
   const getUserFromAPI = async () => {
     try {
       const response = await axios.get(BASE_URL);
 
       const responseUser = response.data.results[0];
 
+      // Setting Local Storage values
       localStorage.setItem("userEmail", responseUser.email);
       localStorage.setItem("userName", responseUser.name["title"] + " " + responseUser.name["first"] + " " + responseUser.name["last"]);
-      // getUserFromLocalStorage()
       console.log(responseUser);
     } catch (error) {
       console.error(error);
@@ -31,6 +30,8 @@ const Details = () => {
   }
 
   const getUserFromLocalStorage = () => {
+    // Retriving values from  Local Storage
+
     const userEmail = localStorage.getItem("userEmail");
     const userName = localStorage.getItem("userName");
 
